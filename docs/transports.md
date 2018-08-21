@@ -52,8 +52,8 @@ The Console transport takes a few simple options:
 * __colorize:__ Boolean flag indicating if we should colorize output (default false).
 * __timestamp:__ Boolean flag indicating if we should prepend output with timestamps (default false). If function is specified, its return value will be used instead of timestamps.
 * __json:__ Boolean flag indicating whether or not the output should be JSON. If true, will log out multi-line JSON objects. (default false)
-* __stringify:__ Boolean flag indiciating if the output should be passed through JSON.stringify, resulting in single-line output. Most useful when used in conjunction with the json flag. (default false)
-* __prettyPrint:__ Boolean flag indicating if we should `util.inspect` the meta (default false). If function is specified, its return value will be the string representing the meta.
+* __stringify:__ Boolean flag indicating if the output should be passed through JSON.stringify, resulting in single-line output. Only useful when the _json_ flag is `true`. If a function is specified, the output will be passed through it. (default false)
+* __prettyPrint:__ Boolean flag indicating if we should `util.inspect` the meta (default false). If a function is specified, its return value will be the string representing the meta.
 * __depth__ Numeric indicating how many times to recurse while formatting the object with `util.inspect` (only used with `prettyPrint: true`) (default null, unlimited)
 * __humanReadableUnhandledException__ Boolean flag indicating if uncaught exception should be output as human readable, instead of a single line
 * __showLevel:__ Boolean flag indicating if we should prepend output with level (default true).
@@ -71,6 +71,7 @@ The Console transport takes a few simple options:
 The File transport should really be the 'Stream' transport since it will accept any [WritableStream][0]. It is named such because it will also accept filenames via the 'filename' option:
 
 * __level:__ Level of messages that this transport should log.
+* __label:__ String value indicating which object (logger or transport) created the record.
 * __silent:__ Boolean flag indicating whether to suppress output.
 * __colorize:__ Boolean flag indicating if we should colorize output.
 * __timestamp:__ Boolean flag indicating if we should prepend output with timestamps (default true). If function is specified, its return value will be used instead of timestamps.
@@ -80,6 +81,7 @@ The File transport should really be the 'Stream' transport since it will accept 
 * __stream:__ The WriteableStream to write output to.
 * __json:__ If true, messages will be logged as JSON (default true).
 * __eol:__ string indicating the end-of-line characters to use (default to `\n`).
+* __stringify:__ If a function is specified, the output will be passed through it
 * __prettyPrint:__ If true, additional JSON metadata objects that are added to logging string messages will be displayed as a JSON string representation. If function is specified, its return value will be the string representing the meta.
 * __depth__ Numeric indicating how many times to recurse while formatting the object with `util.inspect` (only used with `prettyPrint: true`) (default null, unlimited)
 * __logstash:__ If true, messages will be logged as JSON and formatted for logstash (default false).
@@ -255,7 +257,7 @@ The community has truly embraced `winston`; there are over **23** winston transp
 ### Elasticsearch Transport
 
 Log to Elasticsearch in a logstash-like format and
-leverage Kibana to browser your logs.
+leverage Kibana to browse your logs.
 
 See: https://github.com/vanthome/winston-elasticsearch.
 
