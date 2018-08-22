@@ -23,6 +23,7 @@
     "cycle": "1.0.x",
     "eyes": "0.1.x",
     "isstream": "0.1.x",
+    "lodash.clonedeepwith": "^4.5.0",
     "stack-trace": "0.0.x"
   },
   "devDependencies": {
